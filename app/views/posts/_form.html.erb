@@ -1,0 +1,23 @@
+<form action="<%= @post.persisted? ? post_url(@post) : posts_url %>" method="post">
+  <% if @post.persisted? %>
+    <input type="hidden" name="_method" value="patch">
+  <% end %>
+<%= auth_token %>
+<label for="title">Title (required)</label>
+<input id= "title" type="text" name="post[title]" value="<%= @post.title %>"><br>
+<label for="title">URL</label>
+<input id= "title" type="text" name="post[url]" value="<%= @post.url %>"><br>
+
+<select name="post[sub_id]">
+  <<option disabled selected>--Select a sub --</option>
+  <% Sub.all.each do |sub| %>
+    <option value="<%= sub.id %>" <%= @post.sub_id == sub.id ? "selected" : "" %> ><%= sub.title %></option>
+  <% end %>
+</select><br>
+
+<textarea name="post[content]" rows="8" cols="80"><%= @post.content %></textarea><br>
+
+<input type="submit" value= "<%= @post.persisted? ? "Update post" : "Create post" %>">
+
+
+</form>

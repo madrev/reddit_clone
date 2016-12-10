@@ -1,0 +1,7 @@
+<h1><%= @sub.title %></h1>
+<h3><%= @sub.description %></h3>
+<ul>
+  <% @sub.posts.each do |post| %>
+    <%= render 'posts/post', post: post  %>
+  <% end %>
+</ul>
